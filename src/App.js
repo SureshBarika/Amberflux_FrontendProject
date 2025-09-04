@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Recorder from "./components/Recorder";
+import RecordingList from "./components/RecordingList";
+import "./App.css";
 
 function App() {
+  const [refresh, setRefresh] = useState(false);
+
+  const handleUploadSuccess = () => {
+    setRefresh(!refresh); // toggle refresh to reload recordings list
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ maxWidth: "800px", margin: "auto", padding: "20px" }} className="app-container">
+      <h1 className="app-header">Screen Recorder App</h1>
+      <Recorder onUploadSuccess={handleUploadSuccess} />
+      <RecordingList key={refresh} />
     </div>
   );
 }
