@@ -17,7 +17,7 @@ const RecordingList = ({ refresh }) => {
       setLoading(true);
       setError(null);
       
-      const response = await axios.get("/");
+      const response = await axios.get("/api/recordings");
       
       if (response.data.success) {
         setRecordings(response.data.data || []);
@@ -40,7 +40,7 @@ const RecordingList = ({ refresh }) => {
     try {
       setDeletingId(id);
       
-      const response = await axios.delete(`/api/recordings/${id}`);
+      const response = await axios.delete(`${API_BASE_URL}/api/recordings/${id}`);
       
       if (response.data.success) {
         // Remove from local state

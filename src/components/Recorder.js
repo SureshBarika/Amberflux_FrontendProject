@@ -172,7 +172,7 @@ const Recorder = ({ onUploadSuccess }) => {
       const formData = new FormData();
       formData.append("recording", blob, `recording-${Date.now()}.webm`);
 
-      const response = await axios.post("/", formData, {
+      const response = await axios.post(`${API_BASE_URL}/api/recordings`, formData, {
         headers: { 
           "Content-Type": "multipart/form-data" 
         },
